@@ -12,7 +12,7 @@ executables = [
 ]
 
 setup(name='PyItor',
-      version = '0.1',
-      description = 'A Python Editor',
+      version = '0.2',
+      description = 'A text editor written in PyQt5',
       options = dict(build_exe = buildOptions),
       executables = executables)
