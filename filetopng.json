@@ -1,0 +1,9 @@
+{
+    "py" : "python.png",
+    "md" : "markdown.png",
+    "cs" : "csharp.png",
+    "cpp" : "c++.png",
+    "h" : "c++.png",
+    "c" : "c.png",
+    "html" : "html.png"
+}
