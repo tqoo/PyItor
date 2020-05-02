@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar
 from PyQt5.QtGui import QIcon
 import keyboard as kb
 from json import loads
@@ -19,16 +19,16 @@ def xopen():
         xfile = xfile.read()
     icon = QIcon('icons/' + filetopng[filex])
     app.setWindowIcon(icon)
+    text.setText(xfile)
 
 def save(xxfile):
     with open(xxfile, 'w') as xfile:
         xfile = xfile.write(text.toPlainText())
 app = QApplication([])
-xopen()
 text = QTextEdit()
-text.setText(xfile)
 text.show()
 print(content, xfile)
-#print('TextBox done')
+xopen()
 kb.add_hotkey('ctrl+s', lambda: save(content))
+kb.add_hotkey('ctrl+o', lambda: xopen())
 app.exec_()
