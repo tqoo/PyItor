@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar, QShortcut, QVBoxLayout, QWidget, QAction
+from PyQt5.QtGui import QIcon, QKeySequence
 import keyboard as kb
 from json import loads
 xfile = None
@@ -12,6 +12,7 @@ def xopen():
     global content
     filex = ''
     xfile = QFileDialog().getOpenFileName()[0]
+    print('got open file name')
     content = xfile
     long_filename = xfile.split('.')
     filex = long_filename[1]
@@ -19,16 +20,31 @@ def xopen():
         xfile = xfile.read()
     icon = QIcon('icons/' + filetopng[filex])
     app.setWindowIcon(icon)
+    print('setting text')
     text.setText(xfile)
 
 def save(xxfile):
     with open(xxfile, 'w') as xfile:
-        xfile = xfile.write(text.toPlainText())
+        xfile = xfile.write(text.toPlainTex  t())
+#Initiate Widgets
 app = QApplication([])
+layout = QVBoxLayout()
+menu = QMenuBar()
 text = QTextEdit()
+window = QWidget()
+qopen = QAction('&Open')
+qsave = QAction('&Save')
+fileMenu = menu.addMenu('&File')
+
+qopen.triggered.connect(xopen)  
+qsave.triggered.connect(lambda: save(content))
+fileMenu.addAction(qopen)
+fileMenu.addAction(qsave)
+layout.addWidget(menu)
+layout.addWidget(text)
 text.show()
+window.setLayout(layout)
+window.show()
 print(content, xfile)
 xopen()
-kb.add_hotkey('ctrl+s', lambda: save(content))
-kb.add_hotkey('ctrl+o', lambda: xopen())
 app.exec_()
