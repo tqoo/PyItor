@@ -25,7 +25,7 @@ def xopen():
 
 def save(xxfile):
     with open(xxfile, 'w') as xfile:
-        xfile = xfile.write(text.toPlainTex  t())
+        xfile = xfile.write(text.toPlainText())
 #Initiate Widgets
 app = QApplication([])
 layout = QVBoxLayout()
