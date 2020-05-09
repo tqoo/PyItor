@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar, QShortcut, QVBoxLayout, QWidget, QAction
 from PyQt5.QtGui import QIcon, QKeySequence
-import keyboard as kb
 from json import loads
 xfile = None
 content = None
