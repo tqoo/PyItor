@@ -5,8 +5,15 @@ from json import loads
 
 xfile = None
 content = None
-filetopngraw = open('filetopng.json', 'r')
-filetopng = loads(filetopngraw.read())
+filetopng = {
+    "py" : "python.png",
+    "md" : "markdown.png",
+    "cs" : "csharp.png",
+    "cpp" : "c++.png",
+    "h" : "c++.png",
+    "c" : "c.png",
+    "html" : "html.png"
+}
 
 def xopen():
     global xfile
