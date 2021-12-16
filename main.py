@@ -1,12 +1,18 @@
 #https://github.com/microsoft/vscode-icons/#tree/main/icons/light
-from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar, QShortcut, QVBoxLayout, QWidget, QAction
+from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar, QShortcut, QVBoxLayout, QWidget, QAction, QLabel
 from PyQt5.QtGui import QIcon, QKeySequence
-from json import loads
 
 xfile = None
 content = None
-filetopngraw = open('filetopng.json', 'r')
-filetopng = loads(filetopngraw.read())
+filetopng = {
+    "py" : "python.png",
+    "md" : "markdown.png",
+    "cs" : "csharp.png",
+    "cpp" : "c++.png",
+    "h" : "c++.png",
+    "c" : "c.png",
+    "html" : "html.png"
+}
 
 def xopen():
     global xfile
@@ -34,25 +40,38 @@ def xopen():
 def save(xxfile):
     with open(xxfile, 'w+') as xfile:
         xfile = xfile.write(text.toPlainText())
-#Initiate Widgets
-app = QApplication([])
-layout = QVBoxLayout()
-menu = QMenuBar()
-text = QTextEdit()
-window = QWidget()
-qopen = QAction('&Open')
-qsave = QAction('&Save')
-fileMenu = menu.addMenu('&File')
+    
+def error():
+    window = QWidget()
+    layout = QVBoxLayout()
+    layout.addWidget(QLabel('Get errored lol'))
+    layout.addWidget(QPushButton('among us?'))
+    window.setLayout(layout)
+    window.show()
 
-qopen.triggered.connect(xopen)  
-qsave.triggered.connect(lambda: save(content))
-fileMenu.addAction(qopen)
-fileMenu.addAction(qsave)
-layout.addWidget(menu)
-layout.addWidget(text)
-text.show()
-window.setLayout(layout)
-window.show()
-print(content, xfile)
-xopen()
+def main():
+    #Initiate Widgets
+    app = QApplication([])
+    layout = QVBoxLayout()
+    menu = QMenuBar()
+    text = QTextEdit()
+    window = QWidget()
+    qopen = QAction('&Open')
+    qsave = QAction('&Save')
+    fileMenu = menu.addMenu('&File')
+
+    error()
+    qopen.triggered.connect(xopen)  
+    qsave.triggered.connect(lambda: save(content))
+    fileMenu.addAction(qopen)
+    fileMenu.addAction(qsave)
+    layout.addWidget(menu)
+    layout.addWidget(text)
+    text.show()
+    window.setLayout(layout)
+    window.show()
+    print(content, xfile)
+    xopen()
+
+main()
 app.exec_()
