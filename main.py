@@ -1,4 +1,5 @@
 #https://github.com/microsoft/vscode-icons/#tree/main/icons/light
+import PyQt5
 from PyQt5.QtWidgets import QApplication, QTextEdit, QPushButton, QFileDialog, QMenuBar, QShortcut, QVBoxLayout, QWidget, QAction, QLabel
 from PyQt5.QtGui import QIcon, QKeySequence
 
@@ -48,17 +49,17 @@ def error():
     layout.addWidget(QPushButton('among us?'))
     window.setLayout(layout)
     window.show()
-
+app = QApplication([])
+#Initiate Widgets
+layout = QVBoxLayout()
+menu = QMenuBar()
+text = QTextEdit()
+window = QWidget()
+qopen = QAction('&Open')
+qsave = QAction('&Save')
+fileMenu = menu.addMenu('&File')
 def main():
-    #Initiate Widgets
-    app = QApplication([])
-    layout = QVBoxLayout()
-    menu = QMenuBar()
-    text = QTextEdit()
-    window = QWidget()
-    qopen = QAction('&Open')
-    qsave = QAction('&Save')
-    fileMenu = menu.addMenu('&File')
+    
 
     error()
     qopen.triggered.connect(xopen)  
